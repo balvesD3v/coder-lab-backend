@@ -1,29 +1,21 @@
 import {
   IsEmail,
   IsNotEmpty,
-  IsString,
   Matches,
   MaxLength,
   MinLength,
 } from 'class-validator';
 
-export class CreateUserDTO {
-  @IsNotEmpty({
-    message: 'Required Field',
-  })
+export class CreateAuthDTO {
   @IsEmail()
+  @IsNotEmpty()
   email: string;
 
-  @IsNotEmpty({
-    message: 'Required Field',
-  })
-  @IsString()
-  name: string;
-
-  @MinLength(4)
-  @MaxLength(20)
   @Matches(/((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/, {
     message: 'password too weak',
   })
+  @MinLength(4)
+  @MaxLength(20)
+  @IsNotEmpty()
   password: string;
 }

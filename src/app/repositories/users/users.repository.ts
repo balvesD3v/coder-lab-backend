@@ -19,11 +19,18 @@ export class UserRepository {
     });
   }
 
+  findById(id: string): Promise<UserEntity> {
+    return this.userEntity.findOne({
+      where: {
+        id,
+      },
+    });
+  }
+
   createUser(dto: CreateUserDTO): Promise<UserEntity> {
     return this.userEntity.save({
       ...dto,
       role: 'admin',
-      salt: '',
     });
   }
 }
