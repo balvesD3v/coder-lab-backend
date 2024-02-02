@@ -6,15 +6,9 @@ import { CreateUserDTO } from 'src/app/dtos/users/create-user.dto';
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
-  @Get()
-  async findUsers() {
-    const users = await this.usersService.findUsers();
-    return users;
-  }
-
   @Post()
   async createUser(@Body() createUserDTO: CreateUserDTO) {
-    const user = await this.usersService.createUser(createUserDTO);
+    const user = await this.usersService.create(createUserDTO);
     return {
       user: user,
       message: 'Usuário cadastrado!',
