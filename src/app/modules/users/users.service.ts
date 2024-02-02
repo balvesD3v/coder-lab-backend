@@ -12,6 +12,10 @@ export class UsersService
 {
   constructor(private readonly userRepository: UserRepository) {}
 
+  findByEmail(email: string) {
+    return this.userRepository.findEmail(email);
+  }
+
   async create(dto: CreateUserDTO): Promise<UserEntity> {
     const checkUserExists = await this.userRepository.findEmail(dto.email);
 

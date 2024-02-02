@@ -3,6 +3,7 @@ export abstract class ServiceContract<K, T = void, J = void> {
   abstract create?(dto: T): Promise<K>;
   abstract findById?(id: string): Promise<K>;
   abstract findAll?(): Promise<K>[];
+  abstract findOne?(email: string): Promise<K>;
   abstract update?(dto: J): Promise<K>;
   abstract remove?(id: string): Promise<boolean>;
 }

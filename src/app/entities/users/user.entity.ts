@@ -26,15 +26,6 @@ export class UserEntity extends BaseEntity {
   @Column({ nullable: false, default: true })
   password: string;
 
-  @Column({ nullable: false })
-  salt: string;
-
-  @Column({ nullable: true, type: 'varchar', length: 64 })
-  confirmationToken: string;
-
-  @Column({ nullable: true, type: 'varchar', length: 64 })
-  recoverToken: string;
-
   @CreateDateColumn()
   createdAt: Date;
 
