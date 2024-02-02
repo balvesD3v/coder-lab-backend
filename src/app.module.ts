@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { UsersModule } from './app/users/users.module';
-import { CategoryModule } from './app/category/category.module';
-import { ProductsModule } from './app/products/products.module';
+import { UsersModule } from './app/modules/users/users.module';
+import { CategoryModule } from './app/modules/category/category.module';
+import { ProductsModule } from './app/modules/products/products.module';
 
 @Module({
   imports: [
