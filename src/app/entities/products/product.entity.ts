@@ -2,8 +2,7 @@ import {
   BaseEntity,
   Column,
   Entity,
-  JoinTable,
-  ManyToMany,
+  ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { CategoriesEntity } from '../categories/categories.entity';
@@ -13,9 +12,8 @@ export class ProductsEntity extends BaseEntity {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
-  @ManyToMany(() => CategoriesEntity)
-  @JoinTable()
-  categories: CategoriesEntity[];
+  @ManyToOne(() => CategoriesEntity, { eager: true })
+  category: CategoriesEntity;
 
   @Column()
   name: string;
