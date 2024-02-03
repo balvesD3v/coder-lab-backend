@@ -18,6 +18,8 @@ async function bootstrap() {
 
   const categoriesService = app.get(CategoryService);
   const newCategory = new CategoriesEntity();
+  newCategory.name = 'desserts';
+  newCategory.name = 'drinks';
   newCategory.name = 'snack';
   await categoriesService.createCategory(newCategory);
 
