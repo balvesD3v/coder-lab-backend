@@ -21,9 +21,7 @@ export class UserRepository {
 
   findById(id: string): Promise<UserEntity> {
     return this.userEntity.findOne({
-      where: {
-        id,
-      },
+      where: { id },
     });
   }
 

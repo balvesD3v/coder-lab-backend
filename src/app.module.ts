@@ -2,17 +2,13 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UsersModule } from './app/modules/users/users.module';
 import { CategoryModule } from './app/modules/category/category.module';
-import { ProductsModule } from './app/modules/products/products.module';
+import { ProductModule } from './app/modules/product/product.module';
 import { AuthModule } from './auth/auth.module';
 import { APP_GUARD } from '@nestjs/core';
 import { AuthGuard } from './auth/guard/auth.guard';
-import { ProductModule } from './product/product.module';
 
 @Module({
   imports: [
-    // ConfigModule.forRoot({
-    //   envFilePath: ['.env'],
-    // }),
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: process.env.DB_HOST,
@@ -25,7 +21,7 @@ import { ProductModule } from './product/product.module';
     }),
     UsersModule,
     CategoryModule,
-    ProductsModule,
+    ProductModule,
     AuthModule,
     ProductModule,
   ],

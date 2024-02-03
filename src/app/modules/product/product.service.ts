@@ -1,28 +1,60 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { CreateProductDto } from '../../dtos/products/create-product.dto';
 import { UpdateProductDto } from '../../dtos/products/update-product.dto';
+import { ProductRepository } from 'src/app/repositories/products/products.repository';
 
 @Injectable()
 export class ProductService {
   constructor(private readonly productRepository: ProductRepository) {}
 
-  create(createProductDto: CreateProductDto) {
-    return 'This action adds a new product';
+  async create(dto: CreateProductDto) {
+    const checkProductExists = await this.productRepository.findProduct(
+      dto.name,
+    );
+
+    if (checkProductExists) {
+      throw new HttpException('Product already exists!', HttpStatus.CONFLICT);
+    }
+
+    const product = await this.productRepository.createProduct(dto);
+    return product;
   }
 
-  findAll() {
-    return `This action returns all product`;
+  async findOne(id: string) {
+    const product = await this.productRepository.findProductById(id);
+
+    if (!product) {
+      throw new HttpException('Product not exists!', HttpStatus.NOT_FOUND);
+    }
+
+    return product;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} product`;
+  async findAll() {
+    const checkProductExists =
+      await this.productRepository.findProductAllProducts();
+
+    if (!checkProductExists) {
+      throw new HttpException('Product not exists!', HttpStatus.NOT_FOUND);
+    }
+
+    return checkProductExists;
   }
 
-  update(id: number, updateProductDto: UpdateProductDto) {
-    return `This action updates a #${id} product`;
+  async remove(id: string) {
+    await this.findOne(id);
+
+    const product = await this.productRepository.removeProduct(id);
+    return product;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} product`;
+  async update(id: string, updateProductDto: UpdateProductDto) {
+    await this.findOne(id);
+
+    const product = await this.productRepository.updateProduct(
+      id,
+      updateProductDto,
+    );
+    return product;
   }
 }
