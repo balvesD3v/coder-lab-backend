@@ -2,8 +2,9 @@ import 'dotenv/config';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
-import { CategoryService } from './app/modules/category/category.service';
+import { getRepositoryToken } from '@nestjs/typeorm';
 import { CategoriesEntity } from './app/entities/categories/categories.entity';
+import { Connection } from 'typeorm';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -16,12 +17,21 @@ async function bootstrap() {
     }),
   );
 
-  const categoriesService = app.get(CategoryService);
-  const newCategory = new CategoriesEntity();
-  newCategory.name = 'desserts';
-  // newCategory.name = 'drinks';
-  // newCategory.name = 'snack';
-  await categoriesService.createCategory(newCategory);
+  const connection = app.get(Connection);
+  const categoryRepository = app.get(getRepositoryToken(CategoriesEntity));
+  const existingCategories = await categoryRepository.count();
+  if (existingCategories === 0) {
+    const categoriesToAdd = [
+      { name: 'Categoria 1' },
+      { name: 'Categoria 2' },
+      { name: 'Categoria 3' },
+    ];
+
+    for (const categoryData of categoriesToAdd) {
+      const category = categoryRepository.create(categoryData);
+      await categoryRepository.save(category);
+    }
+  }
 
   app.enableCors();
 
