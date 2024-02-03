@@ -2,6 +2,7 @@ import {
   BaseEntity,
   Column,
   Entity,
+  JoinColumn,
   ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
@@ -15,5 +16,6 @@ export class CategoriesEntity extends BaseEntity {
   name: string;
 
   @ManyToOne(() => CategoriesEntity, { nullable: true })
+  @JoinColumn({ name: 'parent_id' })
   parent: CategoriesEntity | null;
 }

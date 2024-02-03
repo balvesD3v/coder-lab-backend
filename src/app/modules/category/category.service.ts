@@ -7,10 +7,14 @@ import { Repository } from 'typeorm';
 export class CategoryService {
   constructor(
     @InjectRepository(CategoriesEntity)
-    private categoriesRepository: Repository<CategoriesEntity>,
+    private readonly categoriesRepository: Repository<CategoriesEntity>,
   ) {}
 
   async getAllCategories(): Promise<CategoriesEntity[]> {
     return this.categoriesRepository.find();
+  }
+
+  async createCategory(category: CategoriesEntity): Promise<CategoriesEntity> {
+    return this.categoriesRepository.save(category);
   }
 }
