@@ -15,8 +15,8 @@ async function bootstrap() {
     }),
   );
 
-  const yourService = app.get(CategoryService);
-  await yourService.addCategoriesToDatabase();
+  const categoriesService = app.get(CategoryService);
+  await categoriesService.addCategoriesToDatabase();
 
   app.enableCors();
 
