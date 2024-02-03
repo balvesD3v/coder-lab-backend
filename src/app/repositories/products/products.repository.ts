@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { CreateProductDto } from 'src/app/dtos/products/create-product.dto';
 import { UpdateProductDto } from 'src/app/dtos/products/update-product.dto';
+import { CategoriesEntity } from 'src/app/entities/categories/categories.entity';
 import { ProductsEntity } from 'src/app/entities/products/product.entity';
 import { Repository } from 'typeorm';
 
@@ -34,9 +35,13 @@ export class ProductRepository {
     return this.productsEntity.delete({ id: id });
   }
 
-  createProduct(dto: CreateProductDto): Promise<ProductsEntity> {
+  createProduct(
+    dto: CreateProductDto,
+    category: CategoriesEntity,
+  ): Promise<ProductsEntity> {
     return this.productsEntity.save({
       ...dto,
+      category: category,
     });
   }
 

@@ -10,6 +10,19 @@ export class CategoryService {
     private readonly categoriesRepository: Repository<CategoriesEntity>,
   ) {}
 
+  async addCategoriesToDatabase() {
+    const categoriesToAdd = [
+      { name: 'Categoria 1' },
+      { name: 'Categoria 2' },
+      { name: 'Categoria 3' },
+    ];
+
+    for (const categoryData of categoriesToAdd) {
+      const category = this.categoriesRepository.create(categoryData);
+      await this.categoriesRepository.save(category);
+    }
+  }
+
   async getAllCategories(): Promise<CategoriesEntity[]> {
     return this.categoriesRepository.find();
   }
