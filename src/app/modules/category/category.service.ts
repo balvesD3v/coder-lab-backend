@@ -12,14 +12,20 @@ export class CategoryService {
 
   async addCategoriesToDatabase() {
     const categoriesToAdd = [
-      { name: 'Drinks' },
+      { name: 'Drink' },
       { name: 'Meat' },
       { name: 'Water' },
     ];
 
     for (const categoryData of categoriesToAdd) {
-      const category = this.categoriesRepository.create(categoryData);
-      await this.categoriesRepository.save(category);
+      const existingCategory = await this.categoriesRepository.findOne({
+        where: { name: categoryData.name },
+      });
+
+      if (!existingCategory) {
+        const category = this.categoriesRepository.create(categoryData);
+        await this.categoriesRepository.save(category);
+      }
     }
   }
 
