@@ -10,7 +10,6 @@ export class CreateProductDto {
   @IsNotEmpty()
   price: number;
 
-  @IsNotEmpty()
   photo: string;
 
   @IsUUID()

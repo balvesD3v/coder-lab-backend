@@ -24,6 +24,6 @@ export class ProductsEntity extends BaseEntity {
   @Column({ type: 'float' })
   price: number;
 
-  @Column()
-  photo: string;
+  @Column({ nullable: true })
+  photo?: string;
 }

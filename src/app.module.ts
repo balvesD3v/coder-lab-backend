@@ -6,9 +6,15 @@ import { ProductModule } from './app/modules/product/product.module';
 import { AuthModule } from './auth/auth.module';
 import { APP_GUARD } from '@nestjs/core';
 import { AuthGuard } from './auth/guard/auth.guard';
+import { MulterModule } from '@nestjs/platform-express';
+import { ImagesModule } from './app/modules/images/images.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
+    MulterModule.register({
+      dest: './uploads',
+    }),
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: process.env.DB_HOST,
@@ -19,9 +25,11 @@ import { AuthGuard } from './auth/guard/auth.guard';
       synchronize: true,
       entities: [__dirname + '/**/*.entity{.js, .ts}'],
     }),
+    ConfigModule.forRoot({ isGlobal: true }),
     UsersModule,
     CategoryModule,
     ProductModule,
+    ImagesModule,
     AuthModule,
     ProductModule,
   ],
