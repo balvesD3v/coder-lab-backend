@@ -3,12 +3,19 @@ import { CreateProductDto } from '../../dtos/products/create-product.dto';
 import { UpdateProductDto } from '../../dtos/products/update-product.dto';
 import { ProductRepository } from 'src/app/repositories/products/products.repository';
 import { CategoriesEntity } from 'src/app/entities/categories/categories.entity';
+import { ImagesService } from '../images/images.service';
 
 @Injectable()
 export class ProductService {
-  constructor(private readonly productRepository: ProductRepository) {}
+  constructor(
+    private readonly productRepository: ProductRepository,
+    private readonly imageService: ImagesService,
+  ) {}
 
-  async create(dto: CreateProductDto) {
+  async create({
+    file,
+    ...dto
+  }: CreateProductDto & { file: Express.Multer.File }) {
     const checkProductExists = await this.productRepository.findProduct(
       dto.name,
     );
@@ -17,12 +24,36 @@ export class ProductService {
       throw new HttpException('Product already exists!', HttpStatus.CONFLICT);
     }
 
-    const category = await this.findCategoryById(dto.categoryName);
+    const category = await this.findCategoryById(dto.categoryId);
 
     if (!category)
       throw new HttpException('Category not found!', HttpStatus.NOT_FOUND);
 
-    const product = await this.productRepository.createProduct(dto, category);
+    const photo = await this.imageService.upload('product/images', file);
+
+    const product = await this.productRepository.createProduct(
+      { ...dto, photo },
+      category,
+    );
+    return product;
+  }
+
+  async update(
+    id: string,
+    {
+      file,
+      ...updateProductDto
+    }: UpdateProductDto & { file?: Express.Multer.File },
+  ) {
+    await this.findOne(id);
+
+    const photo =
+      file && (await this.imageService.upload('product/images', file));
+
+    const product = await this.productRepository.updateProduct(id, {
+      ...updateProductDto,
+      photo,
+    });
     return product;
   }
 
@@ -55,16 +86,6 @@ export class ProductService {
     await this.findOne(id);
 
     const product = await this.productRepository.removeProduct(id);
-    return product;
-  }
-
-  async update(id: string, updateProductDto: UpdateProductDto) {
-    await this.findOne(id);
-
-    const product = await this.productRepository.updateProduct(
-      id,
-      updateProductDto,
-    );
     return product;
   }
 }

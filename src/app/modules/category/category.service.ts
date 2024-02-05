@@ -32,8 +32,4 @@ export class CategoryService {
   async getAllCategories(): Promise<CategoriesEntity[]> {
     return this.categoriesRepository.find();
   }
-
-  async createCategory(category: CategoriesEntity): Promise<CategoriesEntity> {
-    return this.categoriesRepository.save(category);
-  }
 }

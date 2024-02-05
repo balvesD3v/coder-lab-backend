@@ -36,7 +36,7 @@ export class ProductRepository {
   }
 
   createProduct(
-    dto: CreateProductDto,
+    dto: CreateProductDto & { photo: string },
     category: CategoriesEntity,
   ): Promise<ProductsEntity> {
     return this.productsEntity.save({
@@ -45,7 +45,10 @@ export class ProductRepository {
     });
   }
 
-  updateProduct(id: string, dto: UpdateProductDto): Promise<ProductsEntity> {
+  updateProduct(
+    id: string,
+    dto: UpdateProductDto & { photo?: string },
+  ): Promise<ProductsEntity> {
     return this.productsEntity.save({ id, ...dto });
   }
 }
