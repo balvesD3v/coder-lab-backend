@@ -26,9 +26,7 @@ export class ProductService {
     return product;
   }
 
-  private async findCategoryById(
-    id: string,
-  ): Promise<CategoriesEntity | undefined> {
+  async findCategoryById(id: string): Promise<CategoriesEntity | undefined> {
     return await CategoriesEntity.findOne({ where: { id } });
   }
 
