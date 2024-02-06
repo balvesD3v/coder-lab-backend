@@ -23,6 +23,10 @@ import { ConfigModule } from '@nestjs/config';
       username: process.env.DB_USERNAME,
       password: process.env.DB_PASSWORD,
       synchronize: true,
+      ssl:
+        process.env.NODE_ENV === 'production'
+          ? { rejectUnauthorized: true }
+          : true,
       entities: [__dirname + '/**/*.entity{.js, .ts}'],
     }),
     ConfigModule.forRoot({ isGlobal: true }),
