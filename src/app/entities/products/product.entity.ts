@@ -16,6 +16,9 @@ export class ProductsEntity extends BaseEntity {
   category: CategoriesEntity;
 
   @Column()
+  description: string;
+
+  @Column()
   name: string;
 
   @Column({ type: 'int' })
