@@ -3,12 +3,12 @@ import { AuthService } from './auth.service';
 import { CreateAuthDTO } from 'src/app/dtos/auth/auth.dto';
 import { IsPublic } from './decorators/is-publickey.decorator';
 
-@Controller('auth')
+@Controller('session')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   @IsPublic()
-  @Post('login')
+  @Post()
   signIn(@Body() signInDto: CreateAuthDTO) {
     return this.authService.signIn(signInDto);
   }

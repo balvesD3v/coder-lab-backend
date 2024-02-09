@@ -1,4 +1,5 @@
 import { IsNotEmpty, IsUUID } from 'class-validator';
+import { IsNull } from 'typeorm';
 
 export class CreateProductDto {
   @IsNotEmpty()
@@ -13,7 +14,7 @@ export class CreateProductDto {
   @IsNotEmpty()
   price: number;
 
-  photo: string;
+  photo?: string | undefined;
 
   @IsUUID()
   @IsNotEmpty()

@@ -11,7 +11,8 @@ export class AuthService {
     private readonly userService: UsersService,
   ) {}
 
-  async signIn(dto: CreateAuthDTO): Promise<{ token: string }> {
+  async signIn(dto: CreateAuthDTO): Promise<{ token: string; user: object }> {
+    const user = await this.userService.findByEmail(dto.email);
     const checkEmailExists = await this.userService.findByEmail(dto.email);
     const passwordIsValid = await bcrypt.compare(
       dto.password,
@@ -22,10 +23,12 @@ export class AuthService {
       throw new HttpException("Password don't match", HttpStatus.UNAUTHORIZED);
     }
 
+    delete user.password;
+
     const token = this.jwtService.sign({
-      subject: checkEmailExists.id,
+      subject: String(user.id),
     });
 
-    return { token };
+    return { user, token };
   }
 }

@@ -47,9 +47,11 @@ export class ProductService {
   ) {
     await this.findOne(id);
 
-    const photo =
-      file && (await this.imageService.upload('product/images', file));
+    let photo;
 
+    if (file && file.size !== 0) {
+      photo = await this.imageService.upload('product/images', file);
+    }
     const product = await this.productRepository.updateProduct(id, {
       ...updateProductDto,
       photo,

@@ -12,9 +12,9 @@ export class CategoryService {
 
   async addCategoriesToDatabase() {
     const categoriesToAdd = [
-      { name: 'Drink' },
-      { name: 'Meat' },
-      { name: 'Water' },
+      { name: 'snacks' },
+      { name: 'Drinks' },
+      { name: 'Desserts' },
     ];
 
     for (const categoryData of categoriesToAdd) {

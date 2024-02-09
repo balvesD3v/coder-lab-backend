@@ -54,6 +54,7 @@ export class ProductController {
           new MaxFileSizeValidator({ maxSize: 1000000 }),
           new FileTypeValidator({ fileType: '.(png|jpeg|jpg)' }),
         ],
+        fileIsRequired: false,
       }),
     )
     file?: Express.Multer.File,
