@@ -1,6 +1,8 @@
 
 # Coder Lab Backend
 
+#Importate
+Altere o .env.example para .env e coloque os valores necessários
 
 ## Sobre o projeto
 Este projeto foi feito para teste da vaga fullstack para a coder lab, foi um projeto bem interessante de ser realizado e utilizei tecnologias que eu não havia utilizado. Espero que esse projeto venha agradar seus olhos haha
