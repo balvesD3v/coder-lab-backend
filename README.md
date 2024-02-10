@@ -1,6 +1,9 @@
 
 # Coder Lab Backend
 
+![image](https://github.com/balvesD3v/coder-lab-backend/assets/106263458/d74111a6-e542-45fe-9d05-c306b84aba7f)
+
+
 # Importate
 Altere o .env.example para .env e coloque os valores necessários
 
