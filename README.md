@@ -1,74 +1,58 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+# Coder Lab Backend
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-## Description
+## Sobre o projeto
+Este projeto foi feito para teste da vaga fullstack para a coder lab, foi um projeto bem interessante de ser realizado e utilizei tecnologias que eu não havia utilizado. Espero que esse projeto venha agradar seus olhos haha
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Funcionalidades
 
-## Installation
+#### Principais recursos para usuários comuns:
 
-```bash
-$ npm install
-```
 
-## Running the app
+- POST /auth/login: para que os administradores do acessem o sistema.
+- GET /category: para listar todas as categorias de produtos
+- GET /product: para listar todos os produtos
+- GET /product:id: para pegar um produto
+- POST /product: para criar um produto novo
+- PATCH /product/:id: para alterar um produto
+- DELETE /product:id: para excluir um produto
 
-```bash
-# development
-$ npm run start
+## Tecnologia utilizada
 
-# watch mode
-$ npm run start:dev
+#### Back-end
+- NodeJs
+- Typescript
+- Nest
+- Postgres
+- TypeORM
+- Docker
+- Docker compose
+- AWS S3
+- Bcrypt
+- Multer
 
-# production mode
-$ npm run start:prod
-```
+## Por quais motivos utilizei essas tecnologias?
+- Nesse projeto utilizei Nest para dar ao projeto uma grande robustez e flexibilidade já que posso utilizar com ele o Typescript para deixar o projeto mais organizado e bonito. Utilizei tambem postgres com TypeORM para a criação do banco de dados e criação das entidades para o funcionamento correto. Além de que utilizei o docker para a criação da imagem do banco de dados junto com o docker-compose. Ah, tambem utilizei o AWS S3 com bucket para poder armazenar as imagens do projeto e manter a agilidade e rapidez. Utilizei o bcrypt para encriptografar a senha e o multer para o envio de imagens
 
-## Test
+## Como executar o projeto
 
 ```bash
-# unit tests
-$ npm run test
+# clonar repositório
+   git clone git@github.com:balvesD3v/coder-lab-backend.git
 
-# e2e tests
-$ npm run test:e2e
+# instale as dependencias 
+    npm install 
 
-# test coverage
-$ npm run test:cov
+# Você irá precisar instalar o docker desktop
+# Rode o docker
+    docker compose up -d
+
+# inicie o projeto
+    npm run dev
 ```
+## Autor
 
-## Support
+- [@balvesD3v](https://github.com/balvesD3v)
+- [@paulobarbosacode](https://www.linkedin.com/in/paulobarbosacode/)
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
-# coder-lab-backend
