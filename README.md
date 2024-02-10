@@ -1,7 +1,7 @@
 
 # Coder Lab Backend
 
-#Importate
+# Importate
 Altere o .env.example para .env e coloque os valores necessários
 
 ## Sobre o projeto
